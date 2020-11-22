@@ -1,0 +1,32 @@
+<div class="container">
+      <h2 style="padding-left: 320px;">List of Beers with their descriptions</h2>
+      <div class="explore">
+        <input [(ngModel)]="search" id="search" type="text" name="title" placeholder="Search your favourite beer" >
+      </div>
+    
+      <table class="table table-hover">  
+          <thead class="thead-dark">  
+            <tr>  
+              <th>Id</th>  
+              <th>Name</th>  
+              <th>Style</th>  
+              <th>Ounces</th>  
+              <th>ABV</th>  
+              <th>IBU</th>
+            </tr>  
+          </thead>  
+          <tbody>
+            <tr *ngFor="let beer of allBeers | filter : search | paginate : { itemsPerPage: 20, currentPage: p }">
+              <td>{{beer.id}}</td>
+              <td>{{beer.name}}</td>
+              <td>{{beer.style}}</td>
+              <td>{{beer.ounces}}</td>
+              <td>{{beer.abv}}</td>
+              <td>{{beer.ibu}}</td>
+            </tr>
+          </tbody>
+      <ul  class="pagination">  
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>  
+      </ul> 
+      </table>
+</div>
